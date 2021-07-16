@@ -21,16 +21,10 @@ git add .
 git commit -m 'add express'
 
 npm i ts-node
-git add .
-git commit -m 'add ts-node'
-
 echo '{}' > tsconfig.json
-git add .
-git commit -m 'add tsconfig.json'
-
 jq '.scripts.start = "ts-node --transpile-only index.ts"' package.json > tmp && mv tmp package.json
 git add .
-git commit -m 'add start script'
+git commit -m 'add ts-node and start script'
 
 cat > index.ts <<- EOF
 import * as express from 'express'
@@ -49,9 +43,6 @@ git add .
 git commit -m 'add index.ts'
 
 npm i ts-node-dev
-git add .
-git commit -m 'add ts-node-dev'
-
 jq '.scripts.dev = "tsnd --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
 git add .
-git commit -m 'add dev script'
+git commit -m 'add ts-node-dev and dev script'
