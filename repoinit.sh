@@ -20,16 +20,15 @@ yarn add -D @types/express
 git add .
 git commit -m 'add express'
 
-yarn add ts-node
-echo '{}' > tsconfig.json
-jq '.scripts.prod = "ts-node --transpile-only index.ts"' package.json > tmp && mv tmp package.json
+yarn add ts-node-dev
+jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
 git add .
-git commit -m 'add ts-node and prod script'
+git commit -m 'add ts-node-dev and start script'
 
 cat > index.ts <<- EOF
 import * as express from 'express'
 const app = express()
-const port = 3000
+const port = 3001
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -42,10 +41,11 @@ EOF
 git add .
 git commit -m 'add index.ts'
 
-yarn add ts-node-dev
-jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
+yarn add ts-node
+echo '{}' > tsconfig.json
+jq '.scripts.prod = "ts-node --transpile-only index.ts"' package.json > tmp && mv tmp package.json
 git add .
-git commit -m 'add ts-node-dev and start script'
+git commit -m 'add ts-node and prod script'
 
 cat > README.md <<- EOF
 # $DIRNAME
@@ -56,7 +56,7 @@ In the project directory, you can run:
 
 ### \`yarn start\`
 
-Runs the app in the development mode. \
+Runs the app in the development mode.\\
 The server will restart when a file is modified.
 
 ### \`yarn prod\`
