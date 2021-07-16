@@ -7,9 +7,9 @@ cd $DIRNAME
 git init
 echo '{}' > package.json
 jq ".name = \"$DIRNAME\"" package.json > tmp && mv tmp package.json
-jq ".version = \"0.0.0\"" package.json > tmp && mv tmp package.json
+jq ".version = \"0.1.0\"" package.json > tmp && mv tmp package.json
+jq ".private = true" package.json > tmp && mv tmp package.json
 jq ".description = \"\"" package.json > tmp && mv tmp package.json
-jq ".main = \"index.ts\"" package.json > tmp && mv tmp package.json
 jq ".scripts = {}" package.json > tmp && mv tmp package.json
 jq ".keywords = []" package.json > tmp && mv tmp package.json
 jq ".author = \"\"" package.json > tmp && mv tmp package.json
