@@ -20,7 +20,7 @@ yarn add -D @types/express
 git add .
 git commit -m 'add express'
 
-yarn add ts-node-dev
+yarn add ts-node-dev typescript
 jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node-dev and start script'
@@ -41,6 +41,7 @@ EOF
 git add .
 git commit -m 'add index.ts'
 
+yarn add -D @types/node
 yarn add ts-node
 echo '{}' > tsconfig.json
 jq '.scripts.prod = "ts-node --transpile-only index.ts"' package.json > tmp && mv tmp package.json
