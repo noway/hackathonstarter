@@ -72,3 +72,5 @@ Runs the app in the production mode.
 EOF
 git add .
 git commit -m 'add README.md'
+
+echo "cd $DIRNAME"
