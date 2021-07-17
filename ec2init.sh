@@ -6,13 +6,12 @@ export DIRNAME="$(basename $REPO)"
 export PUBLIC_HOSTNAME="$(curl http://169.254.169.254/latest/meta-data/public-hostname)"
 export PUBLIC_IPV4="$(curl http://169.254.169.254/latest/meta-data/public-ipv4)"
 export TITLE="ec2-user@$(hostname) ($PUBLIC_HOSTNAME)"
-yum install -y yum-plugin-copr
+amazon-linux-extras install epel -y
 curl -fsSL https://rpm.nodesource.com/setup_current.x | bash -
 curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-yum copr enable -y @caddy/caddy
 yum install -y git nodejs caddy htop yarn jq
 npm install -g pm2
-cat > /etc/caddy/Caddyfile <<- EOF
+cat > /etc/caddy/caddy.conf <<- EOF
 $PUBLIC_HOSTNAME {
   reverse_proxy localhost:3000
 }
@@ -26,7 +25,7 @@ $PUBLIC_IPV4 {
   reverse_proxy localhost:3000
 }
 EOF
-systemctl restart caddy
+systemctl start caddy
 cd /home/ec2-user
 sudo -u ec2-user ssh-keyscan github.com | sudo -u ec2-user tee -a .ssh/known_hosts
 sudo -u ec2-user ssh-keygen -t ed25519 -f .ssh/id_ed25519 -P ""
