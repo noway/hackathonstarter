@@ -88,6 +88,7 @@ cat > .eslintrc.json <<- EOF
   ]
 }
 EOF
+jq '.scripts.lint = "eslint . --ext .js,.jsx,.ts,.tsx"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add eslint and eslint config'
 
@@ -95,10 +96,12 @@ git commit -m 'add eslint and eslint config'
 yarn add -D eslint-plugin-eslint-comments
 yarn add -D eslint-plugin-import
 yarn add -D eslint-plugin-node
+yarn add -D eslint-plugin-promise
 
 jq '.extends += ["plugin:eslint-comments/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.extends += ["plugin:import/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.extends += ["plugin:node/recommended-module"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+jq '.extends += ["plugin:promise/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 git add .
 git commit -m 'add eslint plugins'
 
