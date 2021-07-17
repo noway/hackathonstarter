@@ -23,6 +23,7 @@ useradd --system \
 wget https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -O /etc/systemd/system/caddy.service
 systemctl daemon-reload
 systemctl enable caddy
+mkdir -p /etc/caddy
 cat > /etc/caddy/Caddyfile <<- EOF
 $PUBLIC_HOSTNAME {
   reverse_proxy localhost:3000
