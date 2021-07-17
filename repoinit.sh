@@ -86,7 +86,8 @@ cat > .eslintrc.json <<- EOF
   "plugins": [],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ]
 }
 EOF
