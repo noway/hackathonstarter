@@ -14,21 +14,17 @@ declare -A arches=( ["x86_64"]="amd64" ["aarch64"]="arm64")
 wget "https://caddyserver.com/api/download?os=linux&arch=${arches[$(arch)]}" -O /usr/bin/caddy
 chmod +x /usr/bin/caddy
 groupadd --system caddy || true
-useradd --system \
-  --gid caddy \
-  --create-home \
-  --home-dir /var/lib/caddy \
-  --shell /usr/sbin/nologin \
-  --comment "Caddy web server" \
-  caddy || true
+useradd --system --gid caddy --create-home \
+  --home-dir /var/lib/caddy --shell /usr/sbin/nologin \
+  --comment "Caddy web server" caddy || true
 wget https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -O /etc/systemd/system/caddy.service
-systemctl daemon-reload
-systemctl enable caddy
 mkdir -p /etc/caddy
 cat > /etc/caddy/Caddyfile <<- EOF
 $PUBLIC_HOSTNAME $PUBLIC_IPV4.nip.io $PUBLIC_IPV4.xip.io $PUBLIC_IPV4
 reverse_proxy localhost:3001
 EOF
+systemctl daemon-reload
+systemctl enable caddy
 systemctl start caddy
 cd /home/ec2-user
 sudo -u ec2-user ssh-keyscan github.com | sudo -u ec2-user tee -a .ssh/known_hosts
