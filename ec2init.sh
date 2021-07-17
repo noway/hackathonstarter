@@ -14,12 +14,12 @@ wget 'https://caddyserver.com/api/download?os=linux&arch=arm64' -O /usr/bin/cadd
 chmod +x /usr/bin/caddy
 groupadd --system caddy || true
 useradd --system \
-    --gid caddy \
-    --create-home \
-    --home-dir /var/lib/caddy \
-    --shell /usr/sbin/nologin \
-    --comment "Caddy web server" \
-    caddy || true
+  --gid caddy \
+  --create-home \
+  --home-dir /var/lib/caddy \
+  --shell /usr/sbin/nologin \
+  --comment "Caddy web server" \
+  caddy || true
 wget https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -O /etc/systemd/system/caddy.service
 systemctl daemon-reload
 systemctl enable caddy
