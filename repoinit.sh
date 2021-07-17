@@ -121,5 +121,7 @@ git commit -m 'add prettier config'
 yarn add -D eslint-config-airbnb-typescript
 jq '.extends = ["airbnb-typescript/base"] + .extends' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.rules = { "no-console": "off" }' .eslintrc.json > tmp && mv tmp .eslintrc.json
+git add .
+git commit -m 'add eslint airbnb config'
 
 echo "cd $DIRNAME"
