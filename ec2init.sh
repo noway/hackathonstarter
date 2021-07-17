@@ -12,6 +12,7 @@ yum install -y git nodejs htop yarn jq
 npm install -g pm2
 
 wget 'https://caddyserver.com/api/download?os=linux&arch=arm64' -O /usr/bin/caddy
+chmod +x /usr/bin/caddy
 groupadd --system caddy || true
 useradd --system \
     --gid caddy \
