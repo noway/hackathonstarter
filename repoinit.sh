@@ -166,6 +166,6 @@ git add .
 git commit -m 'add vscode debugger launch'
 
 git remote add origin "git@github.com:$REPO.git"
-git push -u origin main
+git push -u --force origin main
 
 echo "cd $DIRNAME"
