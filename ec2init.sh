@@ -27,16 +27,16 @@ systemctl enable caddy
 mkdir -p /etc/caddy
 cat > /etc/caddy/Caddyfile <<- EOF
 $PUBLIC_HOSTNAME {
-  reverse_proxy localhost:3000
+  reverse_proxy localhost:3001
 }
 $PUBLIC_IPV4.nip.io {
-  reverse_proxy localhost:3000
+  reverse_proxy localhost:3001
 }
 $PUBLIC_IPV4.xip.io {
-  reverse_proxy localhost:3000
+  reverse_proxy localhost:3001
 }
 $PUBLIC_IPV4 {
-  reverse_proxy localhost:3000
+  reverse_proxy localhost:3001
 }
 EOF
 systemctl start caddy
