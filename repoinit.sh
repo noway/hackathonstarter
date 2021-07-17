@@ -22,6 +22,7 @@ git add .
 git commit -m 'initial commit'
 
 yarn add -D ts-node-dev
+yarn add typescript
 jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs src"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node-dev and start script'
@@ -51,7 +52,7 @@ git add .
 git commit -m 'add express'
 
 yarn add -D @types/node
-yarn add ts-node typescript
+yarn add ts-node
 echo '{}' > tsconfig.json
 jq '.scripts.prod = "ts-node --transpile-only src"' package.json > tmp && mv tmp package.json
 git add .
