@@ -92,7 +92,10 @@ cat > .eslintrc.json <<- EOF
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
-  ]
+  ],
+  "env": {
+    "node": true
+  }
 }
 EOF
 jq '.scripts.lint = "eslint . --ext .js,.jsx,.ts,.tsx"' package.json > tmp && mv tmp package.json
