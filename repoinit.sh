@@ -5,7 +5,7 @@ REPO="$2"
 KEY="$3"
 EC2IP="$4"
 
-mkdir $DIRNAME
+mkdir -p $DIRNAME
 cd $DIRNAME
 git init
 echo '{}' > package.json
@@ -22,13 +22,14 @@ git add .
 git commit -m 'initial commit'
 
 yarn add ts-node-dev typescript
-jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
+jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs src"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node-dev and start script'
 
 yarn add express cors morgan
 yarn add -D @types/express @types/cors @types/morgan
-cat > index.ts <<- EOF
+mkdir -p src
+cat > src/index.ts <<- EOF
 import * as express from 'express'
 import * as cors from 'cors'
 import * as morgan from 'morgan'
@@ -52,7 +53,7 @@ git commit -m 'add express'
 yarn add -D @types/node
 yarn add ts-node
 echo '{}' > tsconfig.json
-jq '.scripts.prod = "ts-node --transpile-only index.ts"' package.json > tmp && mv tmp package.json
+jq '.scripts.prod = "ts-node --transpile-only src"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node and prod script'
 
@@ -105,7 +106,7 @@ jq '.singleQuote = true' .prettierrc > tmp && mv tmp .prettierrc
 git add .
 git commit -m 'add eslint and prettier'
 
-mkdir .vscode
+mkdir -p .vscode
 cat > .vscode/extensions.json <<- EOF
 {
   "recommendations": [
@@ -126,7 +127,7 @@ cat > .vscode/launch.json <<- EOF
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "\${workspaceFolder}/index.ts",
+      "program": "\${workspaceFolder}/src",
     }
   ]
 }
