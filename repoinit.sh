@@ -26,14 +26,16 @@ jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' pac
 git add .
 git commit -m 'add ts-node-dev and start script'
 
-yarn add express
-yarn add -D @types/express
+yarn add express cors
+yarn add -D @types/express @types/cors
 cat > index.ts <<- EOF
 import * as express from 'express'
+import * as cors from 'cors'
 
 const app = express()
 const port = 3001
 
+app.use(cors())
 app.get('/', (req, res) => {
   res.send('Hello $DIRNAME!')
 })
