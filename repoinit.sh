@@ -70,6 +70,10 @@ The server will restart when a file is modified.
 ### \`yarn prod\`
 
 Runs the app in the production mode.
+
+### \`yarn lint\`
+
+Lints all JavaScript and TypeScript files.
 EOF
 git add .
 git commit -m 'add README.md'
