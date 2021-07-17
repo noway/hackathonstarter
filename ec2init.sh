@@ -8,8 +8,9 @@ export PUBLIC_IPV4="$(curl http://169.254.169.254/latest/meta-data/public-ipv4)"
 export TITLE="ec2-user@$(hostname) ($PUBLIC_HOSTNAME)"
 yum install -y yum-plugin-copr
 curl -fsSL https://rpm.nodesource.com/setup_current.x | bash -
+curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 yum copr enable -y @caddy/caddy
-yum install -y git nodejs caddy htop
+yum install -y git nodejs caddy htop yarn jq
 npm install -g pm2
 cat > /etc/caddy/Caddyfile <<- EOF
 $PUBLIC_HOSTNAME {
