@@ -24,16 +24,13 @@ echo 'node_modules/' > .gitignore
 git add .gitignore
 git commit -m 'ignore node_modules'
 
-yarn add express
-yarn add -D @types/express
-git add .
-git commit -m 'add express'
-
 yarn add ts-node-dev typescript
 jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node-dev and start script'
 
+yarn add express
+yarn add -D @types/express
 cat > index.ts <<- EOF
 import * as express from 'express'
 
@@ -49,7 +46,7 @@ app.listen(port, () => {
 })
 EOF
 git add .
-git commit -m 'add index.ts'
+git commit -m 'add express'
 
 yarn add -D @types/node
 yarn add ts-node
