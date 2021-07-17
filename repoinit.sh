@@ -17,12 +17,9 @@ jq ".scripts = {}" package.json > tmp && mv tmp package.json
 jq ".keywords = []" package.json > tmp && mv tmp package.json
 jq ".author = \"\"" package.json > tmp && mv tmp package.json
 jq ".license = \"UNLICENSED\"" package.json > tmp && mv tmp package.json
+echo 'node_modules/' > .gitignore
 git add .
 git commit -m 'initial commit'
-
-echo 'node_modules/' > .gitignore
-git add .gitignore
-git commit -m 'ignore node_modules'
 
 yarn add ts-node-dev typescript
 jq '.scripts.start = "ts-node-dev --transpile-only --respawn --rs index.ts"' package.json > tmp && mv tmp package.json
