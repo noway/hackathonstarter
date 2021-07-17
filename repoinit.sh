@@ -161,5 +161,7 @@ cat > .vscode/launch.json <<- EOF
   ]
 }
 EOF
+git add .
+git commit -m 'add vscode debugger launch'
 
 echo "cd $DIRNAME"
