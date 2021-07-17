@@ -73,4 +73,43 @@ EOF
 git add .
 git commit -m 'add README.md'
 
+yarn add -D eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin
+echo 'node_modules/' > .eslintignore
+cat > .eslintrc.json <<- EOF
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ]
+}
+EOF
+git add .
+git commit -m 'add eslint and eslint config'
+
+
+yarn add -D eslint-plugin-eslint-comments
+yarn add -D eslint-plugin-import
+yarn add -D eslint-plugin-node
+
+jq '.extends += ["plugin:eslint-comments/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+jq '.extends += ["plugin:import/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+jq '.extends += ["plugin:node/recommended-module"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+git add .
+git commit -m 'add eslint plugins'
+
+yarn add -D eslint-config-prettier
+echo '{}' > .prettierrc
+jq '.tabWidth = 2' .prettierrc > tmp && mv tmp .prettierrc
+jq '.useTabs = false' .prettierrc > tmp && mv tmp .prettierrc
+jq '.semi = false' .prettierrc > tmp && mv tmp .prettierrc
+jq '.singleQuote = true' .prettierrc > tmp && mv tmp .prettierrc
+jq '.extends += ["prettier"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+git add .
+git commit -m 'add prettier config'
+
 echo "cd $DIRNAME"
