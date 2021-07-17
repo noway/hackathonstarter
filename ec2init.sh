@@ -25,18 +25,8 @@ systemctl daemon-reload
 systemctl enable caddy
 mkdir -p /etc/caddy
 cat > /etc/caddy/Caddyfile <<- EOF
-$PUBLIC_HOSTNAME {
-  reverse_proxy localhost:3001
-}
-$PUBLIC_IPV4.nip.io {
-  reverse_proxy localhost:3001
-}
-$PUBLIC_IPV4.xip.io {
-  reverse_proxy localhost:3001
-}
-$PUBLIC_IPV4 {
-  reverse_proxy localhost:3001
-}
+$PUBLIC_HOSTNAME $PUBLIC_IPV4.nip.io $PUBLIC_IPV4.xip.io $PUBLIC_IPV4
+reverse_proxy localhost:3001
 EOF
 systemctl start caddy
 cd /home/ec2-user
