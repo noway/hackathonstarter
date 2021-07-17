@@ -10,7 +10,8 @@ curl -fsSL https://rpm.nodesource.com/setup_current.x | bash -
 curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 yum install -y git nodejs htop yarn jq
 npm install -g pm2
-wget 'https://caddyserver.com/api/download?os=linux&arch=arm64' -O /usr/bin/caddy
+declare -A arches=( ["x86_64"]="amd64" ["aarch64"]="arm64")
+wget "https://caddyserver.com/api/download?os=linux&arch=${arches[$(arch)]}" -O /usr/bin/caddy
 chmod +x /usr/bin/caddy
 groupadd --system caddy || true
 useradd --system \
