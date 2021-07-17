@@ -38,7 +38,7 @@ sudo -u ec2-user curl \
   -d "{\"key\": \"$(cat .ssh/id_ed25519.pub)\", \"read_only\": false, \"title\": \"$TITLE\"}"
 sudo -u ec2-user git clone "git@github.com:$REPO.git"
 cd "$DIRNAME/"
-sudo -u ec2-user npm ci
-sudo -u ec2-user pm2 start npm --name "$DIRNAME" -- start
+sudo -u ec2-user yarn --frozen-lockfile
+sudo -u ec2-user pm2 start yarn --name "$DIRNAME" -- start
 echo "https://$PUBLIC_IPV4"
 echo "https://$PUBLIC_HOSTNAME"
