@@ -10,7 +10,6 @@ curl -fsSL https://rpm.nodesource.com/setup_current.x | bash -
 curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 yum install -y git nodejs htop yarn jq
 npm install -g pm2
-
 wget 'https://caddyserver.com/api/download?os=linux&arch=arm64' -O /usr/bin/caddy
 chmod +x /usr/bin/caddy
 groupadd --system caddy || true
@@ -40,7 +39,6 @@ $PUBLIC_IPV4 {
 }
 EOF
 systemctl start caddy
-
 cd /home/ec2-user
 sudo -u ec2-user ssh-keyscan github.com | sudo -u ec2-user tee -a .ssh/known_hosts
 sudo -u ec2-user ssh-keygen -t ed25519 -f .ssh/id_ed25519 -P ""
