@@ -33,6 +33,7 @@ git commit -m 'add ts-node-dev and start script'
 
 cat > index.ts <<- EOF
 import * as express from 'express'
+
 const app = express()
 const port = 3001
 
@@ -79,9 +80,10 @@ cat > .eslintrc.json <<- EOF
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
@@ -114,5 +116,10 @@ jq '.singleQuote = true' .prettierrc > tmp && mv tmp .prettierrc
 jq '.extends += ["prettier"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 git add .
 git commit -m 'add prettier config'
+
+
+yarn add -D eslint-config-airbnb-typescript
+jq '.extends = ["airbnb-typescript/base"] + .extends' .eslintrc.json > tmp && mv tmp .eslintrc.json
+jq '.rules = { "no-console": "off" }' .eslintrc.json > tmp && mv tmp .eslintrc.json
 
 echo "cd $DIRNAME"
