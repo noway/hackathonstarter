@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 DIRNAME="$1"
+REPO="$2"
 
 mkdir $DIRNAME
 cd $DIRNAME
@@ -163,5 +164,8 @@ cat > .vscode/launch.json <<- EOF
 EOF
 git add .
 git commit -m 'add vscode debugger launch'
+
+git remote add origin "git@github.com:$REPO.git"
+git push -u origin main
 
 echo "cd $DIRNAME"
