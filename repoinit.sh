@@ -98,6 +98,16 @@ cat > .eslintrc.json <<- EOF
   ],
   "env": {
     "node": true
+  },
+  "rules": {
+    "no-console": "off",
+    "no-use-before-define": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-for-each": "off"
   }
 }
 EOF
@@ -110,11 +120,14 @@ yarn add -D eslint-plugin-eslint-comments
 yarn add -D eslint-plugin-import
 yarn add -D eslint-plugin-node
 yarn add -D eslint-plugin-promise
+yarn add -D eslint-plugin-unicorn
 
 jq '.extends += ["plugin:eslint-comments/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.extends += ["plugin:import/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.extends += ["plugin:node/recommended-module"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
 jq '.extends += ["plugin:promise/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+jq '.extends += ["plugin:unicorn/recommended"]' .eslintrc.json > tmp && mv tmp .eslintrc.json
+
 git add .
 git commit -m 'add eslint plugins'
 
@@ -131,7 +144,6 @@ git commit -m 'add prettier config'
 
 yarn add -D eslint-config-airbnb-typescript
 jq '.extends = ["airbnb-typescript/base"] + .extends' .eslintrc.json > tmp && mv tmp .eslintrc.json
-jq '.rules = { "no-console": "off" }' .eslintrc.json > tmp && mv tmp .eslintrc.json
 git add .
 git commit -m 'add eslint airbnb config'
 
