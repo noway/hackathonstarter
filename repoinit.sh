@@ -101,29 +101,6 @@ jq '.singleQuote = true' .prettierrc > tmp && mv tmp .prettierrc
 git add .
 git commit -m 'add eslint and prettier'
 
-cat > README.md <<- EOF
-# $DIRNAME
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### \`yarn start\`
-
-Runs the app in the development mode.\\
-The server will restart when a file is modified.
-
-### \`yarn prod\`
-
-Runs the app in the production mode.
-
-### \`yarn lint\`
-
-Lints all JavaScript and TypeScript files.
-EOF
-git add .
-git commit -m 'add README.md'
-
 mkdir .vscode
 cat > .vscode/extensions.json <<- EOF
 {
@@ -152,6 +129,29 @@ cat > .vscode/launch.json <<- EOF
 EOF
 git add .
 git commit -m 'add vscode configuration'
+
+cat > README.md <<- EOF
+# $DIRNAME
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### \`yarn start\`
+
+Runs the app in the development mode.\\
+The server will restart when a file is modified.
+
+### \`yarn prod\`
+
+Runs the app in the production mode.
+
+### \`yarn lint\`
+
+Lints all JavaScript and TypeScript files.
+EOF
+git add .
+git commit -m 'add README.md'
 
 git remote add origin "git@github.com:$REPO.git"
 git push -u --force origin main
