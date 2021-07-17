@@ -132,4 +132,16 @@ jq '.rules = { "no-console": "off" }' .eslintrc.json > tmp && mv tmp .eslintrc.j
 git add .
 git commit -m 'add eslint airbnb config'
 
+mkdir .vscode
+cat > .vscode/extensions.json <<- EOF
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
+EOF
+git add .
+git commit -m 'add recommended extensions'
+
 echo "cd $DIRNAME"
