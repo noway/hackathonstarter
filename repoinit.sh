@@ -144,4 +144,22 @@ EOF
 git add .
 git commit -m 'add recommended extensions'
 
+cat > .vscode/launch.json <<- EOF
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "runtimeExecutable": "\${workspaceFolder}/node_modules/.bin/ts-node",
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch Server",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "\${workspaceFolder}/index.ts",
+    }
+  ]
+}
+EOF
+
 echo "cd $DIRNAME"
