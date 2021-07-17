@@ -2,6 +2,8 @@
 set -ex
 DIRNAME="$1"
 REPO="$2"
+KEY="$3"
+EC2IP="$4"
 
 mkdir $DIRNAME
 cd $DIRNAME
@@ -167,5 +169,8 @@ git commit -m 'add vscode debugger launch'
 
 git remote add origin "git@github.com:$REPO.git"
 git push -u --force origin main
+
+cd -
+./ec2init-run.sh "$KEY" "$EC2IP" "$REPO"
 
 echo "cd $DIRNAME"
