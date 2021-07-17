@@ -28,7 +28,7 @@ $PUBLIC_IPV4 {
 EOF
 systemctl restart caddy
 cd /home/ec2-user
-sudo -u ec2-user ssh-keyscan github.com >> .ssh/known_hosts
+sudo -u ec2-user ssh-keyscan github.com | sudo -u ec2-user tee -a .ssh/known_hosts
 sudo -u ec2-user ssh-keygen -t ed25519 -f .ssh/id_ed25519 -P ""
 sudo -u ec2-user curl \
   -X POST \
