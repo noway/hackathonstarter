@@ -40,7 +40,7 @@ PUBLIC_KEY="$(curl \
   -H "Authorization: token $PAT" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$REPO/actions/secrets/public-key | jq -r .key)"
-ENCRYPTED_SECRET="$(npx -y gh-actions-encrypt-secret "$PUBLIC_KEY" "$(cat .ssh/id_ed25519.pub)")"
+ENCRYPTED_SECRET="$(npx -y gh-actions-encrypt-secret "$PUBLIC_KEY" "$(cat .ssh/id_ed25519)")"
 curl \
   -X PUT \
   -H "Authorization: token $PAT" \
