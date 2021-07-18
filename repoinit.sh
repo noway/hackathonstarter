@@ -172,11 +172,11 @@ jobs:
     steps:
       - name: SSH script
         run: |
-          echo "\$SSH_PRIVATE_KEY" > ./key.pem
-          chmod 600 ./key.pem
           mkdir -p ~/.ssh/
+          echo "\$SSH_PRIVATE_KEY" > ~/.ssh/id
+          chmod 600 ~/.ssh/id
           ssh-keyscan -H $EC2IP >> ~/.ssh/known_hosts
-          ssh -i ./key.pem ec2-user@$EC2IP << EOF
+          ssh -i ~/.ssh/id ec2-user@$EC2IP << EOF
             cd $DIRNAME/
             git reset --hard && git pull --rebase
             rm -rf node_modules/ && yarn --frozen-lockfile --prod
