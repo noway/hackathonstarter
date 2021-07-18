@@ -41,7 +41,7 @@ REPO_PUBLIC_KEY="$(curl \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$REPO/actions/secrets/public-key | jq -r .key)"
 SSH_PRIVATE_KEY="$(cat .ssh/id_ed25519)"
-ENCRYPTED_SECRET="$(sudo -u ec2-user npm exec -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY" "$SSH_PRIVATE_KEY")"
+ENCRYPTED_SECRET="$(sudo -u ec2-user npx -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY" "$SSH_PRIVATE_KEY")"
 curl \
   -X PUT \
   -H "Authorization: token $PAT" \
