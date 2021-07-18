@@ -43,7 +43,8 @@ REPO_PUBLIC_KEY_STR="$(curl \
 REPO_PUBLIC_KEY="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key)"
 REPO_PUBLIC_KEY_ID="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key_id)"
 SSH_PRIVATE_KEY="$(cat .ssh/id_ed25519)"
-ENCRYPTED_SECRET="$(echo "$SSH_PRIVATE_KEY\n" | sudo -u ec2-user npx -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY")"
+SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY\n"
+ENCRYPTED_SECRET="$(echo "$SSH_PRIVATE_KEY" | sudo -u ec2-user npx -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY")"
 curl \
   -X PUT \
   -H "Authorization: token $PAT" \
