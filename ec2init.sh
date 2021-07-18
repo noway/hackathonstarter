@@ -36,22 +36,6 @@ sudo -u ec2-user curl \
   "https://api.github.com/repos/$REPO/keys" \
   -d "{\"key\": \"$(cat .ssh/id_ed25519.pub)\", \"read_only\": false, \"title\": \"$TITLE\"}"
 
-REPO_PUBLIC_KEY_STR="$(curl \
-  -H "Authorization: token $PAT" \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/$REPO/actions/secrets/public-key)"
-REPO_PUBLIC_KEY="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key)"
-REPO_PUBLIC_KEY_ID="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key_id)"
-SSH_PRIVATE_KEY="$(cat .ssh/id_ed25519)"
-SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY"$'\n'
-ENCRYPTED_SECRET="$(echo "$SSH_PRIVATE_KEY" | sudo -u ec2-user npx -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY")"
-curl \
-  -X PUT \
-  -H "Authorization: token $PAT" \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/$REPO/actions/secrets/SSH_PRIVATE_KEY \
-  -d "{\"encrypted_value\": \"$ENCRYPTED_SECRET\", \"key_id\": \"$REPO_PUBLIC_KEY_ID\"}"
-
 sudo -u ec2-user git clone "git@github.com:$REPO.git"
 cd "$DIRNAME/"
 sudo -u ec2-user yarn --frozen-lockfile --prod
