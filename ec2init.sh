@@ -39,7 +39,7 @@ sudo -u ec2-user curl \
 REPO_PUBLIC_KEY_STR="$(curl \
   -H "Authorization: token $PAT" \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/$REPO/actions/secrets/public-key | jq -r .key)"
+  https://api.github.com/repos/$REPO/actions/secrets/public-key)"
 REPO_PUBLIC_KEY="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key)"
 REPO_PUBLIC_KEY_ID="$(echo "$REPO_PUBLIC_KEY_STR" | jq -r .key_id)"
 SSH_PRIVATE_KEY="$(cat .ssh/id_ed25519)"
@@ -49,7 +49,7 @@ curl \
   -H "Authorization: token $PAT" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$REPO/actions/secrets/SSH_PRIVATE_KEY \
-  -d "{\"encrypted_value\":\"$ENCRYPTED_SECRET\", \"key_id\": \"$REPO_PUBLIC_KEY_ID\"}"
+  -d "{\"encrypted_value\": \"$ENCRYPTED_SECRET\", \"key_id\": \"$REPO_PUBLIC_KEY_ID\"}"
 
 sudo -u ec2-user git clone "git@github.com:$REPO.git"
 cd "$DIRNAME/"
