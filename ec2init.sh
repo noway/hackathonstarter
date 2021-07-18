@@ -47,7 +47,7 @@ curl \
   -H "Authorization: token $PAT" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$REPO/actions/secrets/SSH_PRIVATE_KEY \
-  -d "{\"encrypted_value\":\"$(ENCRYPTED_SECRET)\"}"
+  -d "{\"encrypted_value\":\"$ENCRYPTED_SECRET\"}"
 
 sudo -u ec2-user git clone "git@github.com:$REPO.git"
 cd "$DIRNAME/"
