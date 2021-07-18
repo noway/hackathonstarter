@@ -159,6 +159,36 @@ EOF
 git add .
 git commit -m 'add README.md'
 
+mkdir -p .github/workflows/
+cat > .github/workflows/main.yml <<- EOF
+name: CI
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Shitty ssh script
+        run: |
+          echo "\$SSH_PRIVATE_KEY" > ./key.pem
+          chmod 600 ./key.pem
+          mkdir -p ~/.ssh/
+          ssh-keyscan -H $EC2IP >> ~/.ssh/known_hosts
+          ssh -i ./key.pem ec2-user@$EC2IP << EOF
+            cd $DIRNAME/
+            git reset --hard && git pull --rebase
+            rm -rf node_modules/ && yarn
+            pm2 restart $DIRNAME
+          EOF
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: \${{secrets.SSH_PRIVATE_KEY}}
+EOF
+git add .
+git commit -m 'add GitHub Actions script'
+
 git remote add origin "git@github.com:$REPO.git"
 git push -u --force origin main
 
