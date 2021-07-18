@@ -36,11 +36,12 @@ sudo -u ec2-user curl \
   "https://api.github.com/repos/$REPO/keys" \
   -d "{\"key\": \"$(cat .ssh/id_ed25519.pub)\", \"read_only\": false, \"title\": \"$TITLE\"}"
 
-PUBLIC_KEY="$(curl \
+REPO_PUBLIC_KEY="$(curl \
   -H "Authorization: token $PAT" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$REPO/actions/secrets/public-key | jq -r .key)"
-ENCRYPTED_SECRET="$(npx -y gh-actions-encrypt-secret "$PUBLIC_KEY" "$(cat .ssh/id_ed25519)")"
+SSH_PRIVATE_KEY="$(cat .ssh/id_ed25519)"
+ENCRYPTED_SECRET="$(sudo -u ec2-user npm exec -y gh-actions-encrypt-secret "$REPO_PUBLIC_KEY" "$SSH_PRIVATE_KEY")"
 curl \
   -X PUT \
   -H "Authorization: token $PAT" \
