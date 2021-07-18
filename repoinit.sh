@@ -170,7 +170,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Shitty ssh script
+      - name: SSH script
         run: |
           echo "\$SSH_PRIVATE_KEY" > ./key.pem
           chmod 600 ./key.pem
@@ -179,7 +179,7 @@ jobs:
           ssh -i ./key.pem ec2-user@$EC2IP << EOF
             cd $DIRNAME/
             git reset --hard && git pull --rebase
-            rm -rf node_modules/ && yarn
+            rm -rf node_modules/ && yarn --frozen-lockfile --prod
             pm2 restart $DIRNAME
           EOF
         shell: bash
