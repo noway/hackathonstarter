@@ -1,10 +1,10 @@
 #!/bin/bash
 set -ex
 . .env
-DIRNAME="$1"
-REPO="$2"
-KEY="$3"
-EC2IP="$4"
+DIRNAME="$(echo "$1" | tr "/" "\n" | tail -1)"
+REPO="$1"
+KEY="$2"
+EC2IP="$3"
 
 mkdir -p $DIRNAME
 cd $DIRNAME
