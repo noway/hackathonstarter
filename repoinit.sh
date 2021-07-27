@@ -19,6 +19,9 @@ jq ".keywords = []" package.json > tmp && mv tmp package.json
 jq ".author = \"\"" package.json > tmp && mv tmp package.json
 jq ".license = \"UNLICENSED\"" package.json > tmp && mv tmp package.json
 echo 'node_modules/' > .gitignore
+echo 'yarn-debug.log*' > .gitignore
+echo 'yarn-error.log*' > .gitignore
+
 git add .
 git commit -m 'initial commit'
 
@@ -85,11 +88,14 @@ cat > .eslintrc.json <<- EOF
     "no-console": "off",
     "no-use-before-define": "off",
     "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "unicorn/prevent-abbreviations": "off",
-    "unicorn/no-array-for-each": "off"
+    "unicorn/no-array-for-each": "off",
+    "eslint-comments/disable-enable-pair": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/prefer-node-protocol": "off"
   }
 }
 EOF
