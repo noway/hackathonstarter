@@ -6,8 +6,9 @@ REPO="$1"
 KEY="$2"
 EC2IP="$3"
 
-mkdir -p $DIRNAME
-cd $DIRNAME
+rm -rf "repos/$DIRNAME"
+mkdir -p "repos/$DIRNAME"
+cd "repos/$DIRNAME"
 git init
 echo '{}' > package.json
 jq ".name = \"$DIRNAME\"" package.json > tmp && mv tmp package.json
