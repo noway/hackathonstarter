@@ -20,8 +20,8 @@ jq ".keywords = []" package.json > tmp && mv tmp package.json
 jq ".author = \"\"" package.json > tmp && mv tmp package.json
 jq ".license = \"UNLICENSED\"" package.json > tmp && mv tmp package.json
 echo 'node_modules/' > .gitignore
-echo 'yarn-debug.log*' > .gitignore
-echo 'yarn-error.log*' > .gitignore
+echo 'yarn-debug.log*' >> .gitignore
+echo 'yarn-error.log*' >> .gitignore
 
 git add .
 git commit -m 'initial commit'
