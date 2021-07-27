@@ -4,6 +4,7 @@ KEY="$1"
 EC2IP="$2"
 REPO="$3"
 . .env
+chmod 600 "$KEY"
 if [ -z "$(ssh-keygen -F $EC2IP)" ]; then
   ssh-keyscan -H $EC2IP >> ~/.ssh/known_hosts
 fi
