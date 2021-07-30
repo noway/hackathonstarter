@@ -1,14 +1,12 @@
-# Hackathon starter
+# Hackathon Starter
 
 ## Synopsis
-This tool will generate an Express + TypeScript boilerplate and deploy it to an EC2 instance via GitHub Actions.
+This tool generates an Express + TypeScript boilerplate and deploys it to an EC2 instance via GitHub Actions.
 
 ## Philosophy
-This boilerplate's goal is to remove repetetive tasks required to ship a functional demo to the judges and the audience during a hackathon. 
+This is an opinionated starter that aims to remove repetitive tasks required to ship a functional demo to the audience and the judges during a hackathon. 
 
-This boilerplate is opionated.
-
-Hackathon starter only generates the backend. For the frontend, I'd recommend using CRA + Netlify.
+Hackathon Starter only generates the backend. For the frontend, CRA + Netlify works well and is free.
 
 ## Included
 - Yarn V1
@@ -19,9 +17,10 @@ Hackathon starter only generates the backend. For the frontend, I'd recommend us
 - Logging
 - VS Code settings
 - CI/CD via GitHub Actions (SSH to an EC2 instance)
+- HTTPS using Caddy
 
 ## Justifications
-- TypeScript is used because it is the lingua franca of modern development and types help engineers to communicate.
+- TypeScript is used because it is the lingua franca of modern development and type checking helps engineers communicate.
 
 - Yarn is used because it is the default package manager for another great hackathon boilerplate - CRA.
 
@@ -35,7 +34,7 @@ Hackathon starter only generates the backend. For the frontend, I'd recommend us
 
 ## Usage
 1. Create a GitHub repository
-2. Create a AWS account
+2. Create an AWS account
 3. Spawn an EC2 instance (Amazon Linux t2.micro, 443 and 80 ports open)
 4. 
     ```bash
