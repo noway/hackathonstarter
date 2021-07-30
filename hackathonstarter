@@ -1,0 +1,32 @@
+#!/bin/bash
+. .env
+REPO="$1"
+KEY="$2"
+EC2IP="$3"
+
+function print_usage() {
+    echo "Usage: $0 <user/repo> <key> <ec2ip>"
+    exit 1
+}
+
+function print_set_pat() {
+    echo "Please set GitHub Personal Access Token:"
+    echo "echo 'PAT=ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' > .env"
+    exit 1
+}
+
+if [ -z "$REPO" ]; then
+    print_usage
+fi
+
+if [ -z "$KEY" ]; then
+    print_usage
+fi
+
+if [ -z "$EC2IP" ]; then
+    print_usage
+fi
+
+if [ -z "$PAT" ]; then
+    print_set_pat
+fi
