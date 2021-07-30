@@ -14,6 +14,10 @@ This tool will generate an Express + TypeScript boilerplate and deploy it to an 
 - CI/CD via GitHub Actions (ssh to an EC2 instance)
 
 ## Usage
-```bash
-./hackathonstarter username/reponame ~/Downloads/ec2sshkey.pen 3.3.3.3
-```
+1. Create new GitHub repository
+2. Create new AWS account
+3. Spawn an EC2 instance (Amazon Linux t2.micro, 443 and 80 ports open)
+4. 
+    ```bash
+    ./hackathonstarter username/reponame ~/Downloads/ec2sshkey.pem 3.3.3.3
+    ```
