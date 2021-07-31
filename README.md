@@ -56,7 +56,7 @@ Hackathon Starter only generates the backend. For the frontend, CRA + Netlify wo
 - TypeScript is used because it is the lingua franca of modern development and type checking helps engineers communicate.
 - Yarn is used because it is the default package manager for another great hackathon boilerplate - CRA.
 - EC2 is used because AWS provides a running server for a year. 
-- Serverless (Lambda, Vercel, etc) is not used because it doesn't allow you to have server state or handle WebScokets
+- Serverless (Lambda, Vercel, etc) is not used because it doesn't allow you to have server state or handle WebScokets.
 
 ## Not included, but easily added
 - Database (prefer stateless, otherwise globals, SQLite or RDS)
