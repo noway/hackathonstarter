@@ -26,6 +26,15 @@ function check_push_permission() {
     git push "git@github.com:$REPO.git" --delete "$TEST_BRANCH" > /dev/null 2>&1
 }
 
+function check_ssh_access() {
+    echo "Checking for SSH access..."
+    chmod 600 "$KEY"
+    if [ -z "$(ssh-keygen -F $EC2IP > /dev/null 2>&1)" ]; then
+        ssh-keyscan -H $EC2IP >> ~/.ssh/known_hosts 2> /dev/null
+    fi
+    ssh -i "$KEY" ec2-user@"$EC2IP" echo "1" > /dev/null 2>&1
+}
+
 if [ -z "$REPO" ]; then
     print_usage; exit 1
 fi
@@ -46,5 +55,8 @@ if ! check_push_permission; then
     echo "You don't have write access to that GitHub Repository"; exit 1
 fi
 
+if ! check_ssh_access; then
+    echo "You don't have SSH access to that EC2 Instance"; exit 1
+fi
 
 echo "yayeyo"
