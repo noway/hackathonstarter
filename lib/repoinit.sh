@@ -10,6 +10,7 @@ rm -rf "./repos/$DIRNAME"
 mkdir -p "./repos/$DIRNAME"
 cd "./repos/$DIRNAME"
 git init
+echo '{}' > package.json
 jq ".name = \"$DIRNAME\"" package.json > tmp && mv tmp package.json
 jq ".version = \"0.1.0\"" package.json > tmp && mv tmp package.json
 jq ".private = true" package.json > tmp && mv tmp package.json
@@ -58,7 +59,6 @@ git commit -m 'add express'
 
 yarn add -D @types/node
 yarn add ts-node
-echo '{}' > tsconfig.json
 jq '.scripts.prod = "ts-node --transpile-only src"' package.json > tmp && mv tmp package.json
 git add .
 git commit -m 'add ts-node and prod script'
