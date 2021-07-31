@@ -218,5 +218,3 @@ git push -u --force origin main
 
 cd -
 ssh -i "$KEY" ec2-user@"$EC2IP" sudo bash -s "$PAT" "$REPO" < ./lib/ec2init.sh
-
-echo "https://github.com/$REPO"

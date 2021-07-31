@@ -40,5 +40,5 @@ sudo -u ec2-user git clone "git@github.com:$REPO.git"
 cd "$DIRNAME/"
 sudo -u ec2-user yarn --frozen-lockfile --prod
 sudo -u ec2-user pm2 start yarn --interpreter bash --name "$DIRNAME" -- prod
-echo "https://$PUBLIC_IPV4"
 echo "https://$PUBLIC_HOSTNAME"
+echo "https://github.com/$REPO"
