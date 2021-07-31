@@ -15,6 +15,14 @@ Generates an Express + TypeScript project and deploy it to an EC2 instance via G
     ./hackathonstarter noway/coolhackapi ~/Downloads/coolhack2021.pem 3.25.75.16
     ```
 
+## Example output
+```
+...
+```
+
+## Example repo
+https://github.com/noway/thisprimedoesnotexist
+
 ## Philosophy
 This is an opinionated starter that aims to remove repetitive tasks required to ship a functional demo to the audience and the judges during a hackathon. 
 
