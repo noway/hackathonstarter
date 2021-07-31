@@ -21,9 +21,7 @@ Hackathon Starter only generates the backend. For the frontend, CRA + Netlify wo
 
 ## Justifications
 - TypeScript is used because it is the lingua franca of modern development and type checking helps engineers communicate.
-
 - Yarn is used because it is the default package manager for another great hackathon boilerplate - CRA.
-
 - EC2 is used because AWS has a great free tier.
 
 ## Not included, but easily added
@@ -33,10 +31,15 @@ Hackathon Starter only generates the backend. For the frontend, CRA + Netlify wo
 - Next.js (you don't need SSR for a functional demo)
 
 ## Usage
+```bash
+./hackathonstarter <user/repo> <key> <ec2ip>
+```
+
+## Instruction
 1. Create a GitHub repository
 2. Create an AWS account
 3. Spawn an EC2 instance (Amazon Linux t2.micro, 443 and 80 ports open)
 4. 
     ```bash
-    ./hackathonstarter username/reponame ~/Downloads/ec2sshkey.pem 3.3.3.3
+    ./hackathonstarter noway/coolhackapi ~/Downloads/coolhack2021.pem 3.25.75.16
     ```
