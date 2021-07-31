@@ -12,12 +12,25 @@ Generates an Express + TypeScript project and deploy it to an EC2 instance via G
 3. Spawn an EC2 instance (Amazon Linux t2.micro, 443 and 80 ports open)
 4. 
     ```bash
-    ./hackathonstarter noway/coolhackapi ~/Downloads/coolhack2021.pem 3.25.75.16
+    ./hackathonstarter noway/coolhackapi ~/Downloads/coolhack2021.pem 3.25.152.175
     ```
 
 ## Example output
 ```
 ...
+[PM2] Spawning PM2 daemon with pm2_home=/home/ec2-user/.pm2
+[PM2] PM2 Successfully daemonized
+[PM2] Starting /bin/yarn in fork_mode (1 instance)
+[PM2] Done.
+┌─────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ coolhackapi  │ default     │ N/A     │ fork    │ 3623     │ 0s     │ 0    │ online    │ 0%       │ 2.7mb    │ ec2-user │ disabled │
+└─────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+https://ec2-3-25-152-175.ap-southeast-2.compute.amazonaws.com
+https://github.com/noway/coolhackapi
++ echo https://ec2-3-25-152-175.ap-southeast-2.compute.amazonaws.com
++ echo https://github.com/noway/coolhackapi
 ```
 
 ## Example repo
