@@ -59,4 +59,4 @@ if ! check_ssh_access; then
     echo "You don't have SSH access to that EC2 Instance"; exit 1
 fi
 
-exec ./repoinit.sh "$REPO" "$KEY" "$EC2IP"
+exec ./lib/repoinit.sh "$REPO" "$KEY" "$EC2IP"

@@ -6,9 +6,9 @@ REPO="$1"
 KEY="$2"
 EC2IP="$3"
 
-rm -rf "repos/$DIRNAME"
-mkdir -p "repos/$DIRNAME"
-cd "repos/$DIRNAME"
+rm -rf "./repos/$DIRNAME"
+mkdir -p "./repos/$DIRNAME"
+cd "./repos/$DIRNAME"
 git init
 echo '{}' > package.json
 jq ".name = \"$DIRNAME\"" package.json > tmp && mv tmp package.json
@@ -217,6 +217,6 @@ git remote add origin "git@github.com:$REPO.git"
 git push -u --force origin main
 
 cd -
-./ec2init-run.sh "$KEY" "$EC2IP" "$REPO"
+ssh -i "$KEY" ec2-user@"$EC2IP" sudo bash -s "$PAT" "$REPO" < ./lib/ec2init.sh
 
-echo "cd $DIRNAME"
+echo "https://github.com/$REPO"
