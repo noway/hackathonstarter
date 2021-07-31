@@ -49,3 +49,6 @@ Hackathon Starter only generates the backend. For the frontend, CRA + Netlify wo
 - Authentication (don't productionize a functional demo)
 - Payments (don't productionize a functional demo)
 - Next.js (you don't need SSR for a functional demo)
+
+## System requirements
+Make sure following are installed on your system: `npx`, `yarn`, `git` and `jq`.
