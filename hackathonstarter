@@ -3,6 +3,7 @@
 REPO="$1"
 KEY="$2"
 EC2IP="$3"
+DIR=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 
 function print_usage() {
     echo "Usage: $0 <user/repo> <key> <ec2ip>"
@@ -59,4 +60,5 @@ if ! check_ssh_access; then
     echo "You don't have SSH access to that EC2 Instance"; exit 1
 fi
 
+cd "$DIR"
 exec ./lib/repoinit.sh "$REPO" "$KEY" "$EC2IP"
