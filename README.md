@@ -1,7 +1,5 @@
 # Hackathon Starter
-
-## Synopsis
-This tool generates an Express + TypeScript boilerplate and deploys it to an EC2 instance via GitHub Actions.
+Generates an Express + TypeScript boilerplate and deploy it to an EC2 instance via GitHub Actions.
 
 ## Usage
 ```bash
