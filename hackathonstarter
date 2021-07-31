@@ -16,7 +16,7 @@ function print_set_pat() {
 
 function check_push_permission() {
     echo "Checking for push permission..."
-    TEST_BRANCH="test_branch_$(xxd -l16 -ps /dev/urandom)"
+    TEST_BRANCH="main"
     cd `mktemp -d`
     git init > /dev/null 2>&1
     echo 'test' > test
@@ -24,7 +24,6 @@ function check_push_permission() {
     git commit -m "test" > /dev/null 2>&1
     git checkout -b "$TEST_BRANCH" > /dev/null 2>&1
     git push "git@github.com:$REPO.git" "$TEST_BRANCH" > /dev/null 2>&1
-    git push "git@github.com:$REPO.git" --delete "$TEST_BRANCH" > /dev/null 2>&1
 }
 
 function check_ssh_access() {
@@ -53,7 +52,7 @@ if [ -z "$PAT" ]; then
 fi
 
 if ! check_push_permission; then
-    echo "You don't have write access to that GitHub Repository"; exit 1
+    echo "You don't have access to that repo or repo is not empty"; exit 1
 fi
 
 if ! check_ssh_access; then
