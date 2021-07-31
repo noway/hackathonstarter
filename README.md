@@ -1,5 +1,5 @@
 # Hackathon Starter
-Generates an Express + TypeScript project and deploy it to an EC2 instance via GitHub Actions.
+Generate an Express + TypeScript project and deploy it to an EC2 instance via GitHub Actions.
 
 ## Usage
 ```bash
