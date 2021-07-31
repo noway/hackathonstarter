@@ -30,3 +30,24 @@ fi
 if [ -z "$PAT" ]; then
     print_set_pat
 fi
+
+function check_push_permission() {
+    echo "Checking for push permission..."
+    TEST_BRANCH="test_branch_$(xxd -l16 -ps /dev/urandom)"
+    cd `mktemp -d`
+    git init > /dev/null 2>&1
+    echo 'test' > test
+    git add . 
+    git commit -m "test" > /dev/null 2>&1
+    git checkout -b "$TEST_BRANCH" > /dev/null 2>&1
+    git push "git@github.com:$REPO.git" "$TEST_BRANCH" > /dev/null 2>&1
+    git push "git@github.com:$REPO.git" --delete "$TEST_BRANCH" > /dev/null 2>&1
+}
+
+if ! check_push_permission; then
+    echo "You don't have write access to that GitHub Repository"
+    exit 1
+fi
+
+
+echo "yayeyo"
