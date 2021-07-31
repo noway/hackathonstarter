@@ -37,9 +37,9 @@ yarn add express cors morgan
 yarn add -D @types/express @types/cors @types/morgan
 mkdir -p src
 cat > src/index.ts <<- EOF
-import * as express from 'express'
-import * as cors from 'cors'
-import * as morgan from 'morgan'
+import express from 'express'
+import cors from 'cors'
+import morgan from 'morgan'
 
 const app = express()
 const port = 3001
