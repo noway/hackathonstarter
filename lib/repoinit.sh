@@ -124,6 +124,13 @@ cat > .vscode/extensions.json <<- EOF
   ]
 }
 EOF
+cat > .vscode/settings.json <<- EOF
+{
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true
+}
+EOF
 cat > .vscode/launch.json <<- EOF
 {
   "version": "0.2.0",
